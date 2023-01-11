@@ -1,0 +1,28 @@
+entity Alumno {
+	nombre String required,
+	apPaterno String required,
+	apMaterno String,
+    display String,
+    activo Boolean
+}
+
+entity Materia {
+	nombre String required,
+    activo Boolean
+}
+
+entity Calificacion {
+	calificacion Float required,
+    fechaRegistro Instant
+}
+
+relationship OneToMany {
+	Materia to Calificacion{materia(nombre)},
+    Alumno to Calificacion{alumno(display)}
+}
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
