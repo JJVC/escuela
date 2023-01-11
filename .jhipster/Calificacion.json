@@ -1,0 +1,40 @@
+{
+  "applications": "*",
+  "changelogDate": "20230111063312",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "calificacion",
+  "fields": [
+    {
+      "fieldName": "calificacion",
+      "fieldType": "Float",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "fechaRegistro",
+      "fieldType": "Instant"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Calificacion",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "nombre",
+      "otherEntityName": "materia",
+      "otherEntityRelationshipName": "calificacion",
+      "relationshipName": "materia",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "display",
+      "otherEntityName": "alumno",
+      "otherEntityRelationshipName": "calificacion",
+      "relationshipName": "alumno",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

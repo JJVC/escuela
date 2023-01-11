@@ -1,0 +1,117 @@
+<div>
+  <h2 id="page-heading" data-cy="CalificacionHeading">
+    <span jhiTranslate="escuelaApp.calificacion.home.title">Calificacions</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="escuelaApp.calificacion.home.refreshListLabel">Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-calificacion"
+        [routerLink]="['/calificacion/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="escuelaApp.calificacion.home.createLabel"> Crear nuevo Calificacion </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="calificacions?.length === 0">
+    <span jhiTranslate="escuelaApp.calificacion.home.notFound">Ningún Calificacions encontrado</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="calificacions && calificacions.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="calificacion">
+            <div class="d-flex">
+              <span jhiTranslate="escuelaApp.calificacion.calificacion">Calificacion</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="fechaRegistro">
+            <div class="d-flex">
+              <span jhiTranslate="escuelaApp.calificacion.fechaRegistro">Fecha Registro</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="materia.nombre">
+            <div class="d-flex">
+              <span jhiTranslate="escuelaApp.calificacion.materia">Materia</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="alumno.display">
+            <div class="d-flex">
+              <span jhiTranslate="escuelaApp.calificacion.alumno">Alumno</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let calificacion of calificacions; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/calificacion', calificacion.id, 'view']">{{ calificacion.id }}</a>
+          </td>
+          <td>{{ calificacion.calificacion }}</td>
+          <td>{{ calificacion.fechaRegistro | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="calificacion.materia">
+              <a [routerLink]="['/materia', calificacion.materia.id, 'view']">{{ calificacion.materia.nombre }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="calificacion.alumno">
+              <a [routerLink]="['/alumno', calificacion.alumno.id, 'view']">{{ calificacion.alumno.display }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/calificacion', calificacion.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/calificacion', calificacion.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+              </button>
+
+              <button type="submit" (click)="delete(calificacion)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

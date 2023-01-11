@@ -1,0 +1,26 @@
+{
+  "escuelaApp": {
+    "materia": {
+      "home": {
+        "title": "Materias",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Materia",
+        "createOrEditLabel": "Crear o editar Materia",
+        "notFound": "Ningún Materias encontrado"
+      },
+      "created": "Un nuevo Materia ha sido creado con el identificador {{ param }}",
+      "updated": "Un Materia ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Materia ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Materia {{ id }}?"
+      },
+      "detail": {
+        "title": "Materia"
+      },
+      "id": "ID",
+      "nombre": "Nombre",
+      "activo": "Activo",
+      "calificacion": "Calificacion"
+    }
+  }
+}

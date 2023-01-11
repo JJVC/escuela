@@ -1,0 +1,45 @@
+{
+  "applications": "*",
+  "changelogDate": "20230111063310",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "alumno",
+  "fields": [
+    {
+      "fieldName": "nombre",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "apPaterno",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "apMaterno",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "display",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "activo",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Alumno",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "calificacion",
+      "otherEntityRelationshipName": "alumno",
+      "relationshipName": "calificacion",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

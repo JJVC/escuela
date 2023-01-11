@@ -1,0 +1,32 @@
+{
+  "applications": "*",
+  "changelogDate": "20230111063311",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "materia",
+  "fields": [
+    {
+      "fieldName": "nombre",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "activo",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Materia",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "calificacion",
+      "otherEntityRelationshipName": "materia",
+      "relationshipName": "calificacion",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}
