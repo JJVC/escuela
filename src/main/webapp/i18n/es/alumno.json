@@ -19,6 +19,7 @@
       },
       "id": "ID",
       "nombre": "Nombre",
+      "nombreCompleto": "Nombre Completo",
       "apPaterno": "Ap Paterno",
       "apMaterno": "Ap Materno",
       "display": "Display",

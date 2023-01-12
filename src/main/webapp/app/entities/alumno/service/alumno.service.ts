@@ -31,7 +31,7 @@ export class AlumnoService {
   }
 
   find(id: number): Observable<EntityResponseType> {
-    return this.http.get<IAlumno>(`${this.resourceUrl}/${id}`, { observe: 'response' });
+    return this.http.get<IAlumno>(`${this.resourceUrl}/${id}/calificaciones`, { observe: 'response' });
   }
 
   query(req?: any): Observable<EntityArrayResponseType> {

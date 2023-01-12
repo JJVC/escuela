@@ -83,6 +83,16 @@
           <td>{{ alumno.activo }}</td>
           <td class="text-end">
             <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/alumno', alumno.id, 'calificaciones']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">Calificaciones</span>
+              </button>
+
               <button type="submit" [routerLink]="['/alumno', alumno.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
                 <fa-icon icon="eye"></fa-icon>
                 <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
