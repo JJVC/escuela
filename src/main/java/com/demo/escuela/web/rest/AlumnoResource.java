@@ -156,6 +156,13 @@ public class AlumnoResource {
         return ResponseUtil.wrapOrNotFound(alumno);
     }
 
+    @GetMapping("/alumnos/{id}/calificaciones")
+    public ResponseEntity<Alumno> getAlumnoCalificaciones(@PathVariable Long id) {
+        log.debug("REST request to get Alumno + Calificaciones : {}", id);
+        Optional<Alumno> alumno = alumnoService.findOneWithEagerRelationships(id);
+        return ResponseUtil.wrapOrNotFound(alumno);
+    }
+
     /**
      * {@code DELETE  /alumnos/:id} : delete the "id" alumno.
      *

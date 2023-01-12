@@ -84,4 +84,11 @@ public class AlumnoServiceImpl implements AlumnoService {
         log.debug("Request to delete Alumno : {}", id);
         alumnoRepository.deleteById(id);
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<Alumno> findOneWithEagerRelationships(Long id) {
+        log.debug("Request to get Alumno : {}", id);
+        return alumnoRepository.findOneWithEagerRelationships(id);
+    }
 }

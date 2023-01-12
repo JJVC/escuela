@@ -53,4 +53,6 @@ public interface AlumnoService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    Optional<Alumno> findOneWithEagerRelationships(Long id);
 }
