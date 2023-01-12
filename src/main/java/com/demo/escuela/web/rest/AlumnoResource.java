@@ -3,9 +3,12 @@ package com.demo.escuela.web.rest;
 import com.demo.escuela.domain.Alumno;
 import com.demo.escuela.repository.AlumnoRepository;
 import com.demo.escuela.service.AlumnoService;
+import com.demo.escuela.service.dto.AlumnoDTO;
 import com.demo.escuela.web.rest.errors.BadRequestAlertException;
+import java.math.RoundingMode;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -157,10 +160,19 @@ public class AlumnoResource {
     }
 
     @GetMapping("/alumnos/{id}/calificaciones")
-    public ResponseEntity<Alumno> getAlumnoCalificaciones(@PathVariable Long id) {
+    public ResponseEntity<AlumnoDTO> getAlumnoCalificaciones(@PathVariable Long id) {
         log.debug("REST request to get Alumno + Calificaciones : {}", id);
         Optional<Alumno> alumno = alumnoService.findOneWithEagerRelationships(id);
-        return ResponseUtil.wrapOrNotFound(alumno);
+        Optional<AlumnoDTO> alumnoDTO = Optional.empty();
+        if (alumno.isPresent()) {
+            Double promedio = alumno.get().getCalificacions().stream().mapToDouble(value -> value.getCalificacion()).average().orElse(0);
+            DecimalFormat df = new DecimalFormat("#.##");
+            df.setRoundingMode(RoundingMode.DOWN);
+
+            alumnoDTO = Optional.of(new AlumnoDTO(alumno.get()));
+            alumnoDTO.get().setPromedio(Float.valueOf(df.format(promedio)));
+        }
+        return ResponseUtil.wrapOrNotFound(alumnoDTO);
     }
 
     /**
